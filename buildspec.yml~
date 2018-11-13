@@ -3,6 +3,8 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - cd ec2-test-repo
+      - pwd
       - echo Running JUnit tests on `date`
       - mvn -version
   
