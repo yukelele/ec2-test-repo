@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - cd ec2-test-repo
+      - pwd
+      - echo Running JUnit tests on `date`
+      - mvn -version
+  
+  build:
+    commands:
+      - echo Maven build started on `date`
+      - mvn clean package
+      - mv target/ec2-test-repo-0.0.1-SNAPSHOT.war ec2-test-repo-0.0.1-SNAPSHOT.war
+artifacts:
+  files:
+    - ec2-test-repo-0.0.1-SNAPSHOT.war
+    - .ebextensions/**/*
+eb_codebuild_settings:
+  CodeBuildServiceRole: codebuild-codebuild-test-service-role
+  ComputeType: BUILD_GENERAL1_SMALL
+  Image: aws/codebuild/java:openjdk-8
+  Timeout: 60
+  base-directory: 'target/ec2-test-repo'
