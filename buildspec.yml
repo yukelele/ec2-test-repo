@@ -7,8 +7,6 @@ phases:
       - pwd
       - echo Running JUnit tests on `date`
       - mvn -version
-      - mvn install:install-file -Dfile=C:\\OracleJDBC\\ojdbc7.jar 
-           -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
   
   build:
     commands:
